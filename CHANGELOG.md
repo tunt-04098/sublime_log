@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.4] - 25st November 2024
+## [1.0.5] - 25st November 2024
 
 * Remove some external packages
 * Use Icon instead of custom assets/images
