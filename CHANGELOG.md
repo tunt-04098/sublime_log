@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.0.4] - 25st November 2024
+
+* Remove some external packages
+* Use Icon instead of custom assets/images
+
 ## [1.0.4] - 7st November 2023
 
 * Fix crash when send logging message is not 'String' type
