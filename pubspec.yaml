@@ -7,17 +7,12 @@ dependencies:
   flutter:
     sdk: flutter
 
-  intl: ^0.18.1
-  path_provider: ^2.1.1
-  share_plus: ^7.2.1
+  path_provider: ^2.1.5
+  share_plus: ^10.1.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-flutter:
-  assets:
-    - assets/images/
 
 environment:
   sdk: ">=3.0.1 <4.0.0"

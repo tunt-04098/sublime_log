@@ -2,7 +2,6 @@ import 'dart:developer' as dev;
 import 'dart:io';
 import 'package:flutter/material.dart';
 
-import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'logs_preview_page.dart';
@@ -63,7 +62,7 @@ class SublimeLog {
 
   /// Get all logs file of the application.
   static Future<List<String>> getAllLogFiles() async {
-    final path = '${(await getApplicationDocumentsDirectory()).path}/logs';
+    final path = '${(await getApplicationSupportDirectory()).path}/logs';
     final directory = Directory(path);
     final directoryExists = await directory.exists();
     if (!directoryExists) {
@@ -75,9 +74,18 @@ class SublimeLog {
         .toList();
   }
 
+  static Future<void> removeAllLogFiles() async {
+    final path = '${(await getApplicationSupportDirectory()).path}/logs';
+    final directory = Directory(path);
+    final directoryExists = await directory.exists();
+    if (directoryExists) {
+      await directory.delete(recursive: true);
+    }
+  }
+
   /// Get log detail as text plain by file [name].
   static Future<String> getLogDetail(String name) async {
-    final path = '${(await getApplicationDocumentsDirectory()).path}/logs';
+    final path = '${(await getApplicationSupportDirectory()).path}/logs';
     final file = File('$path/$name');
     if (await file.exists()) {
       return file.readAsString();
@@ -87,19 +95,28 @@ class SublimeLog {
 
   /// Get log detail file by file [name].
   static Future<File?> getLogFileByName(String name) async {
-    final path = '${(await getApplicationDocumentsDirectory()).path}/logs';
+    final path = '${(await getApplicationSupportDirectory()).path}/logs';
     final file = File('$path/$name');
     return !(await file.exists()) ? null : file;
   }
 
   static Future<File> get _localLogFile async {
-    final path = '${(await getApplicationDocumentsDirectory()).path}/logs';
+    final path = '${(await getApplicationSupportDirectory()).path}/logs';
+    print('TUNT _localLogFile $path');
     final file =
         File('$path/logs_${_format(DateTime.now(), 'MM-dd-yyyy')}.txt');
     return !(await file.exists()) ? await file.create(recursive: true) : file;
   }
 
   static String _format(DateTime dateTime, String formatPattern) {
-    return DateFormat(formatPattern).format(dateTime);
+    // MM-dd-yyyy HH:mm:ss
+    final formatedStr = formatPattern
+        .replaceAll('MM', dateTime.month.toString().padLeft(2, '0'))
+        .replaceAll('dd', dateTime.day.toString().padLeft(2, '0'))
+        .replaceAll('yyyy', dateTime.year.toString())
+        .replaceAll('HH', dateTime.hour.toString().padLeft(2, '0'))
+        .replaceAll('mm', dateTime.minute.toString().padLeft(2, '0'))
+        .replaceAll('ss', dateTime.second.toString().padLeft(2, '0'));
+    return formatedStr;
   }
 }

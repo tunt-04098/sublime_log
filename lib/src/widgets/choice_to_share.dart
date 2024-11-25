@@ -25,7 +25,7 @@ class ChoiceToShare extends StatelessWidget {
               'Share via...',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: Colors.black,
-                    fontSize: 20.0,
+                    fontSize: 22.0,
                     fontWeight: FontWeight.w400,
                     letterSpacing: -0.28,
                   ),
@@ -33,9 +33,7 @@ class ChoiceToShare extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
-          height: 16.0,
-        ),
+        SizedBox(height: 8.0),
         InkWell(
           onTap: onViewDetails,
           child: _buildButtonContainer(
@@ -43,7 +41,7 @@ class ChoiceToShare extends StatelessWidget {
               'View details',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: Colors.black,
-                    fontSize: 20.0,
+                    fontSize: 22.0,
                     fontWeight: FontWeight.w400,
                     letterSpacing: -0.28,
                   ),

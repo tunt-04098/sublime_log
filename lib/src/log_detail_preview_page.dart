@@ -142,10 +142,9 @@ class _LogDetailPreviewPageState extends State<LogDetailPreviewPage> {
             SizedBox(
               width: 24.0,
               height: 24.0,
-              child: Image.asset(
-                'packages/sublime_log/assets/images/ic_back.jpg',
-                width: 24.0,
-                height: 24.0,
+              child: Icon(
+                Icons.arrow_back_ios_outlined,
+                size: 24.0,
               ),
             ),
           ],
@@ -163,10 +162,9 @@ class _LogDetailPreviewPageState extends State<LogDetailPreviewPage> {
             SizedBox(
               width: 24.0,
               height: 24.0,
-              child: Image.asset(
-                'packages/sublime_log/assets/images/ic_share.jpg',
-                width: 24.0,
-                height: 24.0,
+              child: Icon(
+                Icons.share_outlined,
+                size: 24.0,
               ),
             ),
           ],

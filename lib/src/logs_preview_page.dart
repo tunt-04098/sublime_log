@@ -67,19 +67,9 @@ class _LogsPreviewPageState extends State<LogsPreviewPage> {
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      _buildRemoveButton(),
+                      SizedBox(width: 8.0),
                       _buildRefreshButton(),
-                      // SizedBox(width: 8.0),
-                      // _buildButtonContainer(
-                      //   child: SizedBox(
-                      //     width: 24.0,
-                      //     height: 24.0,
-                      //     child: Image.asset(
-                      //       'assets/images/ic_filter.jpg',
-                      //       width: 24.0,
-                      //       height: 24.0,
-                      //     ),
-                      //   ),
-                      // ),
                     ],
                   )
                 ],
@@ -168,10 +158,9 @@ class _LogsPreviewPageState extends State<LogsPreviewPage> {
             SizedBox(
               width: 24.0,
               height: 24.0,
-              child: Image.asset(
-                'packages/sublime_log/assets/images/ic_back.jpg',
-                width: 24.0,
-                height: 24.0,
+              child: Icon(
+                Icons.arrow_back_ios_outlined,
+                size: 24.0,
               ),
             ),
           ],
@@ -189,10 +178,29 @@ class _LogsPreviewPageState extends State<LogsPreviewPage> {
             SizedBox(
               width: 24.0,
               height: 24.0,
-              child: Image.asset(
-                'packages/sublime_log/assets/images/ic_refresh.jpg',
-                width: 24.0,
-                height: 24.0,
+              child: Icon(
+                Icons.refresh_outlined,
+                size: 24.0,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildRemoveButton() {
+    return InkWell(
+      onTap: _onPressRemove,
+      child: _buildButtonContainer(
+        child: Row(
+          children: [
+            SizedBox(
+              width: 24.0,
+              height: 24.0,
+              child: Icon(
+                Icons.delete_outline,
+                size: 24.0,
               ),
             ),
           ],
@@ -225,6 +233,13 @@ class _LogsPreviewPageState extends State<LogsPreviewPage> {
         : SizedBox.shrink();
   }
 
+  void _onPressRemove() async {
+    await SublimeLog.removeAllLogFiles();
+    setState(() {
+      _getAllLogs = SublimeLog.getAllLogFiles();
+    });
+  }
+
   void _onPressRefresh() async {
     setState(() {
       _getAllLogs = SublimeLog.getAllLogFiles();
@@ -234,6 +249,9 @@ class _LogsPreviewPageState extends State<LogsPreviewPage> {
   void _onPressLog(String log) async {
     showModalBottomSheet(
       context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
+      ),
       builder: (context) => ChoiceToShare(
         onShareExternal: () {
           Navigator.of(context).pop();
