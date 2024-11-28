@@ -102,7 +102,6 @@ class SublimeLog {
 
   static Future<File> get _localLogFile async {
     final path = '${(await getApplicationSupportDirectory()).path}/logs';
-    print('TUNT _localLogFile $path');
     final file =
         File('$path/logs_${_format(DateTime.now(), 'MM-dd-yyyy')}.txt');
     return !(await file.exists()) ? await file.create(recursive: true) : file;
