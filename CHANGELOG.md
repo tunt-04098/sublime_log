@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.7] - 28st November 2024
+
+* Remove debug log
+
 ## [1.0.6] - 28st November 2024
 
 * Remove debug log
