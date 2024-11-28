@@ -1,6 +1,6 @@
 name: sublime_log
 description: Flutter package which manages the logs message, view or share to other.
-version: 1.0.5
+version: 1.0.6
 homepage: https://github.com/tusaamf/sublime_log
 
 dependencies:

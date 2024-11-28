@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.6] - 28st November 2024
+
+* Remove debug log
+
 ## [1.0.5] - 25st November 2024
 
 * Remove some external packages
